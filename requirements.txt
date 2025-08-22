@@ -1,0 +1,322 @@
+# requirements.txt
+# ProGamerGUI Builder - Professional GUI Design Tool
+# Core Dependencies
+
+# GUI Framework (default)
+PyQt6>=6.5.0
+
+# Optional GUI Frameworks (install as needed)
+# PyQt5>=5.15.0
+# customtkinter>=5.2.0
+
+# Development Dependencies (optional)
+# pytest>=7.0.0
+# pytest-qt>=4.2.0
+# black>=22.0.0
+# flake8>=5.0.0
+
+# README.md Content:
+
+# ProGamerGUI Builder
+
+A professional, framework-agnostic visual GUI builder for Python applications. Design beautiful desktop applications using a drag-and-drop interface and export clean, production-ready code for multiple GUI frameworks.
+
+## ✨ Features
+
+- **Framework Agnostic**: Support for PyQt6, PyQt5, Tkinter, and more
+- **Visual Designer**: Drag-and-drop interface with real-time preview
+- **Layer Management**: Organize widgets with advanced layer system
+- **Tab Support**: Create tabbed interfaces with ease
+- **Property Editor**: Comprehensive property editing with live preview
+- **Code Export**: Generate clean, readable, production-ready code
+- **Project Management**: Save and load GUI projects as blueprints
+- **Grid System**: Snap-to-grid for precise alignment
+- **Undo/Redo**: Full undo/redo system for all operations
+
+## 🚀 Quick Start
+
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/your-username/ProGamerGUI_Builder.git
+   cd ProGamerGUI_Builder
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Run the application:**
+   ```bash
+   python main.py
+   ```
+
+### Creating Your First GUI
+
+1. **Start the Application**: Run `python main.py`
+2. **Choose Framework**: Select your target framework from the toolbar
+3. **Add Widgets**: Drag widgets from the palette to the canvas
+4. **Configure Properties**: Use the property editor to customize appearance
+5. **Export Code**: Use File → Export Code to generate your application
+
+## 📁 Project Structure
+
+```
+ProGamerGUI_Builder/
+│
+├── main.py                 # Application entry point
+├── requirements.txt        # Python dependencies
+├── README.md              # This file
+│
+├── core/                  # Core application modules
+│   ├── __init__.py
+│   ├── app.py            # Main application window
+│   ├── canvas.py         # Visual design canvas
+│   ├── property_editor.py # Property editing panel
+│   ├── state_manager.py  # Application state management
+│   └── project_manager.py # Project file operations
+│
+├── widgets/              # Widget definitions
+│   ├── __init__.py
+│   ├── base_widget.py    # Abstract widget base classes
+│   ├── standard_widgets.py # Standard widget implementations
+│   └── container_widgets.py # Container widget implementations
+│
+├── generators/           # Code generators for different frameworks
+│   ├── __init__.py
+│   ├── base_generator.py # Abstract generator base
+│   ├── pyqt6_generator.py # PyQt6 code generator
+│   ├── pyqt5_generator.py # PyQt5 code generator
+│   └── tkinter_generator.py # Tkinter code generator
+│
+├── assets/              # Application assets
+│   ├── icons/          # Icon files
+│   └── styles/         # Style sheets
+│
+├── output/             # Generated projects
+└── logs/              # Application logs
+```
+
+## 🎯 Supported Frameworks
+
+| Framework | Status | Description |
+|-----------|--------|-------------|
+| **PyQt6** | ✅ Full Support | Modern Qt6 bindings with latest features |
+| **PyQt5** | ✅ Full Support | Stable Qt5 bindings with wide compatibility |
+| **Tkinter** | ✅ Full Support | Python's built-in GUI framework |
+| **CustomTkinter** | 🚧 In Progress | Modern, customizable Tkinter |
+
+## 🧩 Widget Library
+
+### Standard Widgets
+- **Button** - Clickable buttons with actions
+- **Label** - Text display with formatting
+- **Entry** - Single-line text input
+- **Text** - Multi-line text input with scrolling
+- **Checkbox** - Boolean selection widget
+- **RadioButton** - Exclusive selection widget
+- **ComboBox** - Dropdown selection with actions
+- **ListBox** - Multi-item selection widget
+- **Slider** - Numeric value selection
+- **ProgressBar** - Progress indication
+- **SpinBox** - Numeric input with controls
+
+### Container Widgets
+- **Frame** - Basic container with borders
+- **GroupBox** - Titled container with grouping
+- **Tabs** - Tabbed interface container
+- **ScrollArea** - Scrollable content container
+- **Splitter** - Resizable pane container
+- **StackedWidget** - Multiple page container
+
+## 🔧 Advanced Features
+
+### Layer Management
+Organize widgets across multiple layers for complex layouts:
+- **Background Layer**: Static elements and frames
+- **Content Layer**: Main interface widgets
+- **Control Layer**: Interactive elements
+- **Overlay Layer**: Dialogs and pop-ups
+- **Debug Layer**: Development helpers
+
+### Tab System
+Create sophisticated tabbed interfaces:
+- Dynamic tab creation and management
+- Tab-specific widget organization
+- Context-aware editing
+- Per-tab property management
+
+### Action System
+Configure widget behaviors:
+- Button click actions
+- Dropdown item actions
+- Keyboard shortcuts
+- Custom function calls
+- Message boxes
+
+### Code Generation
+Export clean, maintainable code:
+- Framework-specific optimizations
+- Proper import management
+- Event handler generation
+- Layout management
+- Asset bundling
+
+## 📖 Usage Examples
+
+### Creating a Simple Form
+
+```python
+# Generated PyQt6 code example
+import sys
+from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton, QLabel, QLineEdit
+from PyQt6.QtCore import Qt
+
+class MyApplication(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Contact Form")
+        self.setGeometry(100, 100, 400, 300)
+        
+        self.central_widget = QWidget()
+        self.setCentralWidget(self.central_widget)
+        
+        self.setup_ui()
+    
+    def setup_ui(self):
+        self.name_label = QLabel("Name:", self.central_widget)
+        self.name_label.setGeometry(20, 20, 80, 25)
+        
+        self.name_entry = QLineEdit(self.central_widget)
+        self.name_entry.setGeometry(120, 20, 200, 25)
+        
+        self.submit_button = QPushButton("Submit", self.central_widget)
+        self.submit_button.setGeometry(150, 80, 100, 35)
+        self.submit_button.clicked.connect(self.on_submit_clicked)
+    
+    def on_submit_clicked(self):
+        name = self.name_entry.text()
+        print(f"Submitted: {name}")
+
+def main():
+    app = QApplication(sys.argv)
+    window = MyApplication()
+    window.show()
+    sys.exit(app.exec())
+
+if __name__ == '__main__':
+    main()
+```
+
+### Project File Format
+
+```json
+{
+  "name": "My GUI Project",
+  "framework": "PyQt6",
+  "version": "1.0",
+  "main_window": {
+    "id": "main_window",
+    "type": "MainWindow",
+    "properties": {
+      "title": "My Application",
+      "geometry": [100, 100, 800, 600],
+      "colors": {
+        "background": "#F0F0F0"
+      }
+    }
+  },
+  "widgets": [
+    {
+      "id": "widget_1",
+      "type": "Button",
+      "properties": {
+        "name": "submit_button",
+        "text": "Submit",
+        "geometry": [150, 80, 100, 35],
+        "action": {
+          "type": "message",
+          "target": "Button clicked!"
+        }
+      }
+    }
+  ]
+}
+```
+
+## 🤖 Integration with AI
+
+This tool is designed to work seamlessly with AI coding assistants:
+
+1. **Export Blueprint**: Generate JSON blueprints of your GUI design
+2. **Send to AI**: Share the blueprint with AI assistants like Claude, ChatGPT, or GitHub Copilot
+3. **Describe Functionality**: Explain what your application should do
+4. **Get Complete Code**: Receive fully functional applications with business logic
+
+### Example AI Prompt
+```
+I've created a GUI blueprint using ProGamerGUI Builder (attached JSON). 
+Please help me build a complete contact management application that:
+- Saves contacts to a database
+- Validates email addresses
+- Supports contact search and filtering
+- Exports contacts to CSV
+
+Make it production-ready with proper error handling and documentation.
+```
+
+## 🛠️ Development
+
+### Adding New Widgets
+
+1. **Create Widget Class**: Extend `BaseWidget` or `StandardWidget`
+2. **Define Properties**: Implement `get_default_properties()` and `get_property_definitions()`
+3. **Add to Registry**: Register in `standard_widgets.py`
+4. **Update Generators**: Add support in framework generators
+
+### Adding New Frameworks
+
+1. **Create Generator**: Extend `BaseGenerator`
+2. **Implement Methods**: Define all abstract methods
+3. **Register Generator**: Add to generator registry
+4. **Test Generation**: Verify code output
+
+### Running Tests
+
+```bash
+# Install test dependencies
+pip install pytest pytest-qt
+
+# Run all tests
+pytest
+
+# Run with coverage
+pytest --cov=core --cov=widgets --cov=generators
+```
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for details on how to submit pull requests, report issues, and suggest improvements.
+
+## 📞 Support
+
+- **Documentation**: [Wiki](https://github.com/your-username/ProGamerGUI_Builder/wiki)
+- **Issues**: [GitHub Issues](https://github.com/your-username/ProGamerGUI_Builder/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/your-username/ProGamerGUI_Builder/discussions)
+
+## 🙏 Acknowledgments
+
+- Qt Framework and PyQt bindings
+- Python Tkinter team
+- The open source community
+- All contributors and testers
+
+---
+
+**ProGamerGUI Builder** - Making desktop GUI development accessible to everyone! 🎨✨
